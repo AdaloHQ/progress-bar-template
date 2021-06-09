@@ -1,0 +1,43 @@
+{
+  "displayName": "Rob progressBar",
+  "defaultWidth": 160,
+  "defaultHeight": 24,
+  "resizeY": true,
+  "components": "./index.js",
+  "icon": "",
+  "props": [
+    {
+      "name": "value",
+      "displayName": "value",
+      "type": "number",
+      "default": 25,
+      "color": "@text",
+      "styles": {
+        "textAlignment": "center"
+      }
+    },
+    {
+      "name":"maxValue",
+      "displayName":"max value",
+      "type":"number",
+      "default": 100
+    },
+    {
+      "name": "barColor",
+      "displayName": "color",
+      "type": "color",
+      "default": "@primaryLight"
+    },
+    {
+      "name": "barBaseColor",
+      "displayName": "base color",
+      "type": "color",
+      "default": "@primaryDark"
+    },
+    {"name": "textColor",
+      "displayName": "text color",
+      "type": "color",
+      "default": "@text"
+    }
+  ]
+}
