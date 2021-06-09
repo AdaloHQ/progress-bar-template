@@ -8,7 +8,7 @@
   "props": [
     {
       "name": "value",
-      "displayName": "value",
+      "displayName": "Value",
       "type": "number",
       "default": 25,
       "color": "@text",
@@ -18,24 +18,24 @@
     },
     {
       "name":"maxValue",
-      "displayName":"max value",
+      "displayName":"Max Value",
       "type":"number",
       "default": 100
     },
     {
       "name": "barColor",
-      "displayName": "color",
+      "displayName": "Color",
       "type": "color",
       "default": "@primaryLight"
     },
     {
       "name": "barBaseColor",
-      "displayName": "base color",
+      "displayName": "Base Color",
       "type": "color",
       "default": "@primaryDark"
     },
     {"name": "textColor",
-      "displayName": "text color",
+      "displayName": "Text Color",
       "type": "color",
       "default": "@text"
     }

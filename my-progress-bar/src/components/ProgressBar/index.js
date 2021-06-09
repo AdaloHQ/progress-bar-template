@@ -2,51 +2,58 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
 class ProgressBar extends Component {
-  checkEdgeCases() {
-    if (this.props.value > this.props.maxValue) {
-      this.props.value = this.props.maxValue
+  state = {
+    width: null,
+  }
+  handleLayout = ({ nativeEvent }) => {
+    const { width } = (nativeEvent && nativeEvent.layout) || {}
+    const { width: prevWidth } = this.state
+
+    if (width !== prevWidth) {
+      this.setState({ width })
     }
-
-    if (this.props.maxValue < this.props.value) {
-      this.props.maxValue = this.props.value
-    }
-
-    if (this.props.value < 0) this.props.value = this.props.value
-    if (this.props.maxValue <= 0)
-      this.props.maxValue = this.props.maxValue.default
-
-    // if (this.props.value.type != 'number') this.props.value = 0
-
-    //if (this.props.maxValue.type != 'number') this.props.value = 0
   }
 
   render() {
-    this.checkEdgeCases()
+    const { value, maxValue, barColor, textColor, barBaseColor, _height } =
+      this.props
+    const { width } = this.state
+
+    let barProgress = value / maxValue
+
+    let widthAdjustmentNeeded = width * barProgress > width
 
     const style = {
       bar: {
-        height: this.defaultHeight,
-        width: this.props.value,
-        backgroundColor: this.props.barColor,
+        height: _height,
+        width: widthAdjustmentNeeded ? width : width * barProgress,
+        backgroundColor: barColor,
         borderRadius: 5,
         textAlign: 'center',
+        justifyContent: 'center',
         position: 'relative',
-        color: this.props.textColor,
+        color: textColor,
+        transition: 1,
+        transitionDelay: 0.5,
       },
       border: {
-        height: this.defaultHeight, //how do i get this to dynamic sizing
-        width: this.props.maxValue,
-        backgroundColor: this.props.barBaseColor,
+        height: _height,
+        width: width,
+        backgroundColor: barBaseColor,
         borderRadius: 5,
         position: 'relative',
       },
     }
 
-    let barProgress = Math.round((this.props.value / this.props.maxValue) * 100)
-
     return (
-      <View style={style.border}>
-        <View style={style.bar}>{barProgress}%</View>
+      <View onLayout={this.handleLayout}>
+        {width && (
+          <View style={style.border}>
+            <View style={style.bar}>
+              {widthAdjustmentNeeded ? 100 : barProgress * 100}%
+            </View>
+          </View>
+        )}
       </View>
     )
   }
