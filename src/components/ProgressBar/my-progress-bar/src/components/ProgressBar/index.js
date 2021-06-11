@@ -23,6 +23,9 @@ class ProgressBar extends Component {
 
     let widthAdjustmentNeeded = width * barProgress > width
 
+    //if (typeof width !== 'number') {
+    //}
+
     const style = {
       bar: {
         height: _height,
@@ -50,7 +53,7 @@ class ProgressBar extends Component {
         {width && (
           <View style={style.border}>
             <View style={style.bar}>
-              {widthAdjustmentNeeded ? 100 : barProgress * 100}%
+              {widthAdjustmentNeeded ? 100 : Math.round(barProgress * 100)}%
             </View>
           </View>
         )}

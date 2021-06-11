@@ -11,10 +11,7 @@
       "displayName": "Value",
       "type": "number",
       "default": 25,
-      "color": "@text",
-      "styles": {
-        "textAlignment": "center"
-      }
+      "color": "@text"
     },
     {
       "name":"maxValue",
