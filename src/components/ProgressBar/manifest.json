@@ -1,21 +1,140 @@
 {
   "displayName": "Progress Bar",
-  "defaultWidth": 160,
-  "defaultHeight": 24,
+  "defaultWidth": 300,
+  "defaultHeight": 8,
+  "resizeY": true,
+  "resizeX": true,
   "components": "./index.js",
   "icon": "./example-thumbnail.png",
   "props": [
     {
-      "name": "text",
-      "displayName": "Text",
-      "type": "text",
-      "default": "Happy Hacking"
+      "name": "progressValue",
+      "displayName": "Progress Value",
+      "type": "number",
+      "default": 25
     },
     {
-      "name": "color",
-      "displayName": "Color",
-      "type": "color",
-      "default": "#00A898"
+      "name": "maxValue",
+      "displayName": "Max Value",
+      "type": "number",
+      "default": 100
+    },
+    {
+      "name": "direction",
+      "displayName": "Direction",
+      "type": "number",
+      "default": 0,
+      "control": {
+        "type": "menu",
+        "options": [
+          { "label": "Left to Right", "value": 0 },
+          { "label": "Right to Left", "value": 1 },
+          { "label": "Top to Bottom", "value": 2 },
+          { "label": "Bottom to Top", "value": 3 }
+        ]
+      }
+    }
+  ],
+  "childComponents": [
+    {
+      "name": "styles",
+      "displayName": "Styles",
+      "props": [
+        {
+          "name": "backgroundColor",
+          "displayName": "Background Color",
+          "type": "color",
+          "default": "@primary"
+        },
+        {
+          "name": "progressColor",
+          "displayName": "Progress Color",
+          "type": "color",
+          "default": "@primaryLight"
+        },
+        {
+          "name": "exteriorRounding",
+          "displayName": "Exterior Rounding",
+          "type": "number",
+          "default": 0,
+          "control": { "type": "slider", "max": 100, "min": 0 }
+        },
+        {
+          "name": "interiorRounding",
+          "displayName": "Interior Rounding",
+          "type": "number",
+          "default": 0,
+          "control": { "type": "slider", "max": 100, "min": 0 }
+        },
+        { "name": "intBorderEnabled","displayName":"Interior Border", "type": "boolean", "default": false },
+        {
+          "name": "interiorBorderWidth",
+          "displayName": "Border Width",
+          "type": "number",
+          "enabled": {"intBorderEnabled": true},
+          "default": 1,
+          "control": { "type": "slider", "max": 3, "min": 1 }
+        },
+        {
+          "name": "interiorBorderColor",
+          "displayName": "Border Color",
+          "type": "color",
+          "enabled": {"intBorderEnabled": true},
+          "default": "@text"
+        },
+        { "name": "extBorderEnabled", "displayName":"Exterior Border", "type": "boolean", "default": false },
+        {
+          "name": "exteriorBorderWidth",
+          "displayName": "Border Width",
+          "type": "number",
+          "enabled": {"extBorderEnabled": true},
+          "default": 1,
+          "control": { "type": "slider", "max": 3, "min": 1 }
+        },
+        {
+          "name": "exteriorBorderColor",
+          "displayName": "Border Color",
+          "type": "color",
+          "enabled": {"extBorderEnabled": true},
+          "default": "@text"
+        }
+      ]
+    },
+    {
+      "name": "animate",
+      "displayName": "Animate",
+      "props": [
+        {
+          "name": "animateWhen",
+          "displayName": "Animate",
+          "type": "number",
+          "default": 0,
+          "control": {
+            "type": "menu",
+            "options": [
+              { "label": "Both", "value": 0 },
+              { "label": "On Mount", "value": 1 },
+              { "label": "On Change", "value": 2 },
+              { "label": "Neither", "value": 3 }
+            ]
+          }
+          
+        },
+        {
+          "name": "animationSpeed",
+          "displayName": "Animation Speed",
+          "type": "number",
+          "default": 12,
+          "control": { "type": "slider", "max": 100, "min": 0 }
+        },
+        {
+          "name": "animationBounciness",
+          "displayName": "Animation Bounciness",
+          "type": "number",
+          "default": 8,
+          "control": { "type": "slider", "max": 50, "min": 0 }
+        }
+      ]
     }
   ]
 }
